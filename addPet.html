@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Pet | PawMatch</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom colors */
+        .bg-primary {
+            background-color: #ffedeb; /* Soft pink */
+        }
+        .bg-accent {
+            background-color: #ffcccb; /* Light red */
+        }
+        .text-primary {
+            color: #3b3b3b; /* Dark gray */
+        }
+        .button-primary {
+            background-color: #ff6f61; /* Coral */
+            color: white;
+        }
+        .button-primary:hover {
+            background-color: #ff5a50; /* Darker coral */
+        }
+    </style>
+</head>
+<body class="bg-primary">
+    <nav class="bg-white bg-opacity-80 p-4 fixed w-full top-0 z-50 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+          <div class="flex items-center">
+            <h1 class="text-2xl font-bold text-primary"><a href="landing-page.html">PetFinder</a></h1>
+          </div>
+          <div class="hidden md:flex space-x-4">
+            <a href="index.html" class="text-secondary hover:text-button-primary">Home</a>
+            <a href="index.html" class="text-secondary hover:text-button-primary">Available Pets</a>
+            <a href="adoption-process.html" class="text-secondary hover:text-button-primary">Adoption Process</a>
+            <a href="blog.html" class="text-secondary hover:text-button-primary">Blogs</a>
+            <a href="faq.html" class="text-secondary hover:text-button-primary">FAQs</a>
+          </div>
+          <div class="flex items-center">
+            <button class="button-primary px-4 py-2 rounded-md"><a href="login.html">Sign Out</a></button>
+          </div>
+        </div>
+    </nav>
+    <div class="bg-accent p-6 rounded-lg shadow-md mt-20">
+        <div class="container mx-auto p-4">
+            <h2 class="text-2xl font-bold text-primary mb-4">Add a New Pet</h2>
+            <form id="addPetForm" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-primary">Pet Name:</label>
+                    <input type="text" id="name" name="name" class="w-full p-2 border rounded" required>
+                </div>
+                <div>
+                    <label for="photo" class="block text-primary">Photo URL:</label>
+                    <input type="text" id="photo" name="photo" class="w-full p-2 border rounded" required>
+                </div>
+                <div>
+                    <label for="breed" class="block text-primary">Breed:</label>
+                    <input type="text" id="breed" name="breed" class="w-full p-2 border rounded" required>
+                </div>
+                <div>
+                    <label for="age" class="block text-primary">Age:</label>
+                    <input type="text" id="age" name="age" class="w-full p-2 border rounded" required>
+                </div>
+                <div>
+                    <label for="description" class="block text-primary">Description:</label>
+                    <textarea id="description" name="description" class="w-full p-2 border rounded" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="button-primary px-4 py-2 rounded-md">Add Pet</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load existing pets from localStorage
+            const pets = JSON.parse(localStorage.getItem('pets')) || [];
+
+            document.getElementById('addPetForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const name = document.getElementById('name').value;
+                const photo = document.getElementById('photo').value;
+                const breed = document.getElementById('breed').value;
+                const age = document.getElementById('age').value;
+                const description = document.getElementById('description').value;
+
+                const newPet = {
+                    id: pets.length + 1, // New ID
+                    name: name,
+                    photo: photo,
+                    breed: breed,
+                    age: age,
+                    description: description
+                };
+
+                // Add the new pet to the list
+                pets.push(newPet);
+
+                // Save updated pet list to localStorage
+                localStorage.setItem('pets', JSON.stringify(pets));
+
+                // Redirect to the menu page or refresh the pet list
+                window.location.href = 'menu.html';
+            });
+        });
+    </script>
+</body>
+</html>
