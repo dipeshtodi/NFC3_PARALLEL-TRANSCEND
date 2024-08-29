@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matching Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Matching Results</h1>
+        </header>
+        <main>
+            {% if pets %}
+                <ul class="results-list">
+                    {% for pet in pets %}
+                        <li class="result-item">
+                            <img src="{{ url_for('static', filename='images/' ~ pet.image) }}" alt="{{ pet.name }}" style="width: 200px; height: auto; border-radius: 4px;">
+                            <h3>{{ pet.name }}</h3>
+                            <p>Type: {{ pet.type }}</p>
+                            <p>Activity Level: {{ pet.activity_level }}</p>
+                            <p>Home Environment: {{ pet.home_environment }}</p>
+                            <p>Age: {{ pet.age }}</p>
+                            <p>Allergy Friendly: {{ pet.allergy_friendly }}</p>
+                            <a href="mailto:{{ pet.email }}?subject=Inquiry%20about%20{{ pet.name }}" class="inquire-button">Inquire</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No matching pets found. Try adjusting your preferences or try again.</p>
+            {% endif %}
+            <a href="/" class="back-link">Take the quiz again</a>
+        </main>
+    </div>
+</body>
+</html>
