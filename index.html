@@ -3,29 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Adoption Quiz</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Available Pets | PetFinder</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom colors */
+        .bg-primary {
+            background-color: #ffedeb; /* Soft pink */
+        }
+        .bg-accent {
+            background-color: #ffcccb; /* Light red */
+        }
+        .text-primary {
+            color: #3b3b3b; /* Dark gray */
+        }
+        .text-secondary {
+            color: #555555; /* Medium gray */
+        }
+        .button-primary {
+            background-color: #ff6f61; /* Coral */
+            color: white;
+        }
+        .button-primary:hover {
+            background-color: #ff5a50; /* Darker coral */
+        }
+    </style>
 </head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Find Your Perfect Pet!</h1>
-        </header>
-        <main>
-            <form id="quizForm" action="/submit" method="post">
-                {% for question in questions %}
-                    <div class="question-section">
-                        <h2>{{ question.question }}</h2>
-                        {% for option in question.options %}
-                            <label>
-                                <input type="radio" name="{{ question.key }}" value="{{ option }}" required> {{ option }}
-                            </label><br>
-                        {% endfor %}
-                    </div>
-                {% endfor %}
-                <button type="submit" class="submit-button">Find My Pet</button>
-            </form>
-        </main>
+<body class="bg-primary">
+    <nav class="bg-white bg-opacity-80 p-4 fixed w-full top-0 z-50 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+          <div class="flex items-center">
+            <h1 class="text-2xl font-bold text-primary"><a href="index.html">PawMatch</a></h1>
+          </div>
+          <div class="hidden md:flex space-x-4">
+            <a href="index.html" class="text-secondary hover:text-button-primary">Home</a>
+            <a href="add-pet.html" class="text-secondary hover:text-button-primary">Add Pet</a>
+            <a href="adoption-process.html" class="text-secondary hover:text-button-primary">Adoption Process</a>
+            <a href="blog.html" class="text-secondary hover:text-button-primary">Blogs</a>
+            <a href="faq.html" class="text-secondary hover:text-button-primary">FAQs</a>
+          </div>
+          <div class="flex items-center">
+            <button class="button-primary px-4 py-2 rounded-md"><a href="login.html">Sign Out</a></button>
+          </div>
+        </div>
+    </nav>
+    <div class="bg-accent p-6 rounded-lg shadow-md mt-20">
+        <div class="container mx-auto p-4">
+            <!-- Search Bar -->
+            <div class="mb-4 flex">
+                <input type="text" id="searchInput" class="w-full p-2 border rounded" placeholder="Search by breed, type, or description...">
+                <button onclick="searchPet()" class="button-primary p-2 rounded mx-2">Search</button>
+            </div>
+
+            <!-- Pet Cards -->
+            <div id="petCards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Pet Cards will be dynamically added here -->
+            </div>
+        </div>
+
+        <!-- Sample Pet Card Template (Hidden) -->
+        <div id="petCardTemplate" class="hidden">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <a class="pet-link" href="#"><img class="w-full h-48 object-cover" src="pet_photo.jpg" alt="Pet image"></a>
+                <div class="p-4">
+                    <h2 class="text-xl font-bold text-primary mb-2">Pet Name</h2>
+                    <p class="text-secondary mb-2">Breed: Pet Breed</p>
+                    <p class="text-secondary mb-2">Age: Pet Age</p>
+                    <p class="text-secondary mb-2">Description: Pet Description</p>
+                </div>
+            </div>
+        </div>
     </div>
+    <script>
+        // Load pets from localStorage
+        const pets = JSON.parse(localStorage.getItem('pets')) || [];
+
+        // Function to display pet cards based on the search query
+        function searchPet() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const petCardsContainer = document.getElementById('petCards');
+            petCardsContainer.innerHTML = '';
+
+            pets.forEach(pet => {
+                if (pet.breed.toLowerCase().includes(searchInput) || 
+                    pet.name.toLowerCase().includes(searchInput) || 
+                    pet.description.toLowerCase().includes(searchInput)) {
+                    // Clone the pet card template
+                    const petCardTemplate = document.getElementById('petCardTemplate');
+                    const petCardClone = petCardTemplate.cloneNode(true);
+                    petCardClone.classList.remove('hidden');
+
+                    // Update pet card details
+                    petCardClone.querySelector('img').src = pet.photo;
+                    petCardClone.querySelector('h2').textContent = pet.name;
+                    petCardClone.querySelector('p:nth-child(2)').textContent = `Breed: ${pet.breed}`;
+                    petCardClone.querySelector('p:nth-child(3)').textContent = `Age: ${pet.age}`;
+                    petCardClone.querySelector('p:nth-child(4)').textContent = `Description: ${pet.description}`;
+
+                    // Update link for pet profile
+                    const petLink = petCardClone.querySelector('.pet-link');
+                    petLink.href = `pet-detail.html?id=${pet.id}`;
+
+                    // Append the pet card to the container
+                    petCardsContainer.appendChild(petCardClone);
+                }
+            });
+        }
+
+        // Event listener for Enter key press
+        document.getElementById('searchInput').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                searchPet();
+            }
+        });
+
+        // Initial display of pet cards
+        searchPet();
+    </script>
 </body>
 </html>

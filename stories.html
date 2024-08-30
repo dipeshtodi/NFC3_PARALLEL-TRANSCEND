@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adoption Success Stories</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .bg-primary {
+            background-color: #fef6e4; /* Soft beige */
+        }
+        .bg-secondary {
+            background-color: #f3d2c1; /* Peach */
+        }
+        .bg-accent {
+            background-color: #f5a623; /* Bright orange */
+        }
+        .text-primary {
+            color: #3b3b3b; /* Dark gray */
+        }
+        .text-secondary {
+            color: #555555; /* Medium gray */
+        }
+        .button-primary {
+            background-color: #ff6f61; /* Coral */
+            color: white;
+        }
+        .button-primary:hover {
+            background-color: #ff5a50; /* Darker coral */
+        }
+        .h2 {
+          color: black;
+        }
+        
+        /* CSS to position the element above the navbar */
+        .fixed-top {
+            position: absolute; /* or fixed, depending on your layout */
+            top: 0; /* Adjust as needed */
+            left: 0;
+            right: 0;
+            z-index: 1000; /* Ensure it is above other elements */
+        }
+        
+        /* CSS to reduce the gap between the navbar and the scroll section */
+        .navbar {
+            margin-bottom: 0; /* Remove margin */
+        }
+        
+        header h2,
+        header p {
+            color: black; /* Set text color to black for header elements */
+        }
+        
+        .scroller-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 16px 0; /* Space above and below scroller */
+            margin: 0 auto; /* Center horizontally */
+        }
+        
+        .scroller {
+            display: flex;
+            scroll-snap-type: x mandatory;
+            align-items: center;
+        }
+        
+        .scroller-item {
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+            width: 300px; /* Adjust based on your design */
+            margin-right: 20px; /* Space between items */
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 16px;
+            text-align: center;
+        }
+        
+        .scroller::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for a cleaner look */
+        }
+        </style>
+    
+    
+</head>
+<body class="bg-primary text-primary">
+
+    <!-- Navbar -->
+    <nav class="bg-secondary p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-primary"><a href="index.html">PawMatch</a></h1>
+            <div class="hidden md:flex space-x-4">
+                <a href="index.html" class="text-primary hover:text-accent">Home</a>
+                <a href="events.html" class="text-primary hover:text-accent">Events & Campaigns</a>
+                <a href="learn-more.html" class="text-primary hover:text-accent">Learn More</a>
+                <a href="contact.html" class="text-primary hover:text-accent">Contact Us</a>
+            </div>
+            <button class="button-primary px-4 py-2 rounded-md"><a href="login.html">Sign In</a></button>
+        </div>
+    </nav>
+
+<!-- Header -->
+<header class="bg-accent text-white p-8 mt-16">
+    <div class="container mx-auto">
+        <h2 class="text-3xl font-bold text-black">Adoption Success Stories</h2>
+        <p class="text-lg mt-2 text-black">Read about how our platform has helped pets find their forever homes!</p>
+    </div>
+</header>
+
+    <!-- Success Stories Section -->
+    <section class="container mx-auto p-6 page-center">
+        <div class="scroller-container">
+            <div class="scroller" id="scroller">
+                <!-- Stories will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Include Tailwind JS -->
+    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
+
+    <!-- JavaScript for Success Stories -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const stories = [
+                {
+                    title: "Bella Finds a Loving Home",
+                    description: "Bella, a 2-year-old Labrador, was adopted by a wonderful family who provide her with endless love and care. She's now enjoying daily walks and playtime in her new backyard.",
+                    imageUrl: "dog1.jpeg"
+                },
+                {
+                    title: "Max's New Beginnings",
+                    description: "Max, a senior Beagle, found a forever home with a retired couple who are devoted to giving him a comfortable and happy retirement. Max loves his new cozy bed and the daily treats.",
+                    imageUrl: "cat1.jpegp"
+                },
+                {
+                    title: "Lucy and Her New Family",
+                    description: "Lucy, a playful kitten, was adopted by a young couple who were looking for a furry companion. Lucy quickly adjusted to her new home and brings joy to everyone around her.",
+                    imageUrl: "cat2.jpeg"
+                },
+                {
+                    title: "Charlie Finds His Forever Home",
+                    description: "Charlie, a 5-year-old Golden Retriever, was adopted by a family with kids who love playing fetch. Charlie now enjoys his new home with plenty of space to run around.",
+                    imageUrl: "dog3.jpeg"
+                },
+                {
+                    title: "Daisy's Happy Ending",
+                    description: "Daisy, a shy Tabby cat, was adopted by a patient owner who helped her come out of her shell. Daisy now enjoys cuddles and playtime with her new family.",
+                    imageUrl: "cat3.jpeg"
+                },
+                {
+                    title: "Rex's New Adventure",
+                    description: "Rex, a 3-year-old German Shepherd, found a home with an active couple who take him on daily hikes. Rex is thriving in his new environment and loves exploring the outdoors.",
+                    imageUrl: "dog4.jpeg"
+                },
+                {
+                    title: "Sophie Finds Love",
+                    description: "Sophie, a gentle Poodle, was adopted by an elderly woman who wanted a companion. Sophie now enjoys her days in a cozy home and is loved dearly by her new owner.",
+                    imageUrl: "dog5.jpeg"
+                },
+                {
+                    title: "Benny's Bright Future",
+                    description: "Benny, a young Dachshund, was adopted by a young family with a big yard. Benny is excited to run around and play with his new human siblings.",
+                    imageUrl: "cat5.jpeg"
+                },
+                {
+                    title: "Milo's New Family",
+                    description: "Milo, a 1-year-old Siamese cat, was adopted by a couple who were looking for a loving pet. Milo has quickly become an integral part of their family.",
+                    imageUrl: "dog6.jpeg"
+                },
+                {
+                    title: "Zoe's New Home",
+                    description: "Zoe, a 4-year-old Boxer, found a new home with a family who provides her with plenty of playtime and affection. Zoe now enjoys her new life to the fullest.",
+                    imageUrl: "dog7.jpeg"
+                },
+                {
+                    title: "Rocky's Fresh Start",
+                    description: "Rocky, a senior Bulldog, was adopted by a loving couple who wanted a calm and friendly pet. Rocky now enjoys his days in a relaxed and caring environment.",
+                    imageUrl: "dog8.jpeg"
+                },
+                {
+                    title: "Ginger's New Chapter",
+                    description: "Ginger, a spirited kitten, was adopted by a family with children who adore her. Ginger is now a happy and active member of her new family.",
+                    imageUrl: "cat4.jpeg"
+                },
+                {
+                    title: "Buddy's Happy Home",
+                    description: "Buddy, a friendly Collie, was adopted by a family who loves outdoor activities. Buddy now has a yard to play in and a family that loves him dearly.",
+                    imageUrl: "dog10.jpeg"
+                },
+                {
+                    title: "Maggie's New Life",
+                    description: "Maggie, a sweet Cocker Spaniel, found a home with a retired couple who are dedicated to providing her with love and comfort in her golden years.",
+                    imageUrl: "dog8.jpeg"
+                },
+                {
+                    title: "Toby's New Beginning",
+                    description: "Toby, a playful Shih Tzu, was adopted by a young couple who were looking for a lively pet. Toby now enjoys his new home with lots of toys and attention.",
+                    imageUrl: "dog9.jpeg"
+                }
+            ];
+
+            const scroller = document.getElementById('scroller');
+
+            stories.forEach(story => {
+                const storyCard = document.createElement('div');
+                storyCard.className = 'scroller-item';
+                storyCard.innerHTML = `
+                    <img src="${story.imageUrl}" alt="${story.title}" class="w-full h-48 object-cover mb-4 rounded-lg">
+                    <h4 class="text-xl font-bold mb-2">${story.title}</h4>
+                    <p class="text-secondary">${story.description}</p>
+                `;
+                scroller.appendChild(storyCard);
+            });
+        });
+    </script>
+</body>
+</html>

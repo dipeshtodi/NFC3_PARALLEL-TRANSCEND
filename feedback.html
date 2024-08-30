@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fef6e4; /* Soft beige */
+            color: #3b3b3b; /* Dark gray */
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f3d2c1; /* Peach */
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #3b3b3b; /* Dark gray */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #555555; /* Medium gray */
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 5px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        .button-primary {
+            background-color: #ff6f61; /* Coral */
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .button-primary:hover {
+            background-color: #ff5a50; /* Darker coral */
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #555555; /* Medium gray */
+        }
+
+        /* Success message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background-color: #d4edda; /* Light green */
+            color: #155724; /* Dark green */
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            margin-top: 20px;
+            font-size: 18px;
+            animation: fadeIn 2s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive styling */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>We Value Your Feedback!</h1>
+    <form id="feedbackForm">
+        <label for="name">Your Full Name</label>
+        <input type="text" id="name" placeholder="John Doe" required>
+
+        <label for="email">Your Email Address</label>
+        <input type="email" id="email" placeholder="johndoe@example.com" required>
+
+        <label for="feedback">How would you rate your experience with our pet adoption process?</label>
+        <textarea id="feedback" placeholder="Share your thoughts and suggestions here..." required></textarea>
+
+        <button type="button" class="button-primary" onclick="submitFeedback()">Submit Feedback</button>
+    </form>
+    <div id="successMessage" class="success-message">
+        Thank you for your feedback! You will be redirected shortly.
+    </div>
+</div>
+
+<div class="footer">
+    <p>Thank you for helping us improve!</p>
+</div>
+
+<script>
+    function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    function submitFeedback() {
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var feedback = document.getElementById('feedback').value;
+
+        if (name && email && feedback) {
+            setCookie('feedback_name', name, 7);
+            setCookie('feedback_email', email, 7);
+            setCookie('feedback_content', feedback, 7);
+
+            // Hide form and show success message
+            document.getElementById('feedbackForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+
+            // Redirect after 3 seconds
+            setTimeout(function() {
+                window.location.href = 'index.html'; // Replace with your main page URL
+            }, 3000);
+        } else {
+            alert("Please fill in all fields.");
+        }
+    }
+
+    // Load cookies on page load
+    window.onload = function() {
+        var name = getCookie('feedback_name');
+        var email = getCookie('feedback_email');
+        var feedback = getCookie('feedback_content');
+
+        if (name) document.getElementById('name').value = name;
+        if (email) document.getElementById('email').value = email;
+        if (feedback) document.getElementById('feedback').value = feedback;
+    };
+</script>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Events and Campaigns</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom colors */
+        .bg-primary {
+            background-color: #fef6e4; /* Soft beige */
+        }
+        .bg-secondary {
+            background-color: #f3d2c1; /* Peach */
+        }
+        .bg-accent {
+            background-color: #f5a623; /* Bright orange */
+        }
+        .text-primary {
+            color: #3b3b3b; /* Dark gray */
+        }
+        .text-secondary {
+            color: #555555; /* Medium gray */
+        }
+        .button-primary {
+            background-color: #ff6f61; /* Coral */
+            color: white;
+        }
+        .button-primary:hover {
+            background-color: #ff5a50; /* Darker coral */
+        }
+    </style>
+</head>
+<body class="bg-primary text-primary">
+
+ <!-- Navbar -->
+<nav class="bg-secondary p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-primary"><a href="index.html">PawMatch</a></h1>
+        <div class="hidden md:flex space-x-4">
+            <a href="index.html" class="text-primary hover:text-accent">Home</a>
+            <a href="events.html" class="text-primary hover:text-accent">Events & Campaigns</a>
+            <a href="learn-more.html" class="text-primary hover:text-accent">Learn More</a>
+            <a href="contact.html" class="text-primary hover:text-accent">Contact Us</a>
+        </div>
+        <button class="button-primary px-4 py-2 rounded-md"><a href="login.html">Sign In</a></button>
+    </div>
+</nav>
+
+
+    <!-- Header -->
+    <header class="bg-accent text-white p-8 mt-16">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold">Upcoming Pet Events & Campaigns</h2>
+            <p class="text-lg mt-2">Join us in making a difference in the lives of pets. Participate in our events and campaigns to support animal welfare.</p>
+        </div>
+    </header>
+
+    <!-- Events Section -->
+    <section class="container mx-auto p-6">
+        <h3 class="text-2xl font-bold mb-4">Featured Events</h3>
+        <div id="eventsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Static Events -->
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <h4 class="text-xl font-bold mb-2">Mumbai Catapalooza</h4>
+                <p class="text-secondary mb-2">15 Sep, 2024</p>
+                <p class="text-secondary mb-4">#Mumbai - Relax harder, and enjoy every moment!
+
+                    Here is what we have for you:
+                    <li>Exciting Gifts for all the pets</li>
+                    <li>Goodie bags for all the pets</li>                 
+                     <li>Complementary Cat food buffet</li>                  
+                      <li>Complementary Health Check</li>              
+                       <li>And lots more.... </li>        
+                     
+                    Entry Fee: Rs. 499 per person, Tickets on ground will be priced at Rs. 700 per person.
+                    No charge for pets*
+                    Book your tickets now!!
+                     
+                     
+                    Call Us on 9811639193 for More Details</p>
+                <button class="button-primary px-4 py-2 rounded-md"><a href="https://petfed.org/mumbai" target="_blank">Learn More</a></button>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <h4 class="text-xl font-bold mb-2">Pet Fed Mumbai 2025</h4>
+                <p class="text-secondary mb-2">13 Jan, 2025</p>
+                <p class="text-secondary mb-4">#Mumbai! Get Ready because India's Biggest Pet Festival #PetFedIndiaisBack! It's time to shower your adorable companions with two whole days of undivided love they absolutely deserve. 
+
+                    Right in the heart of Nesco Grounds, Goregaon on 13th & 14th Jan' 24! Here's what got for you:
+                   
+                   <li>3 Acres of Festival Area</li>                
+                    <li>Expert Master Classe</li>             
+                     <li>Dogs & Cats Play Zones </li>              
+                      <li>International Cat Show </li>              
+                       <li>Fashion Show </li>    
+                       <li>Police Dog Show </li>      
+                         <li>Agility Ring        </li>  
+                            <li>Adoption Camps</li>       
+                            <li>Exciting Games</li>      
+                             <li>100+ Global Pet Stalls</li>            
+                                <li>Food, Drinks & Fun </li>         
+                                  <li>Come with/without your pet!</li>
+                   
+                    Intrigued? Discover more at petfed.org/mumbai
+                   
+                   #PetFedMumbai2024</p>
+                <button class="button-primary px-4 py-2 rounded-md"><a href="https://petfed.org/events/pfm24" target="_blank">Join Now</a></button>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <h4 class="text-xl font-bold mb-2">What’s Puppin’ in your city?</h4>
+                <p class="text-secondary mb-2">Nov 15, 2024</p>
+                <p class="text-secondary mb-4">Learn from experts about pet health and wellness. Topics include nutrition, grooming, and first aid for pets. Perfect for new and experienced pet owners alike.</p>
+                <button class="button-primary px-4 py-2 rounded-md"><a href="https://petfed.org/mumbai" target="_blank">Register Here</a></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Include Tailwind JS -->
+    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
+</body>
+</html>
